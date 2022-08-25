@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace iTalentBlogProject.Core.Services
 {
-    public interface IGenericService<TDto> where TDto : class
+    public interface IGenericService<TEntity> where TEntity : class
     {
-        Task<IEnumerable<TDto>> GetAllAsync();
-        IQueryable<TDto> Where(Expression<Func<TDto, bool>> predicate);
-        Task<bool> AnyAsync(Expression<Func<TDto, bool>> predicate);
-        Task<TDto> GetByIdAsync(int id);
-        Task AddAsync(TDto entity);
-        Task UpdateAsync(TDto entity);
-        Task RemoveAsync(TDto entity);
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<TEntity> GetByIdAsync(int id);
+        Task AddAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task RemoveAsync(TEntity entity);
     }
 }
