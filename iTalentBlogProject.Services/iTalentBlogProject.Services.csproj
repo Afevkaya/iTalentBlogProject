@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\iTalentBlogProject.Core\iTalentBlogProject.Core.csproj" />
+    <ProjectReference Include="..\iTalentBlogProject.Repository\iTalentBlogProject.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
