@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace iTalentBlogProject.Core.Entities
+﻿namespace iTalentBlogProject.Core.Entities
 {
     public class Post
     {
@@ -13,6 +7,8 @@ namespace iTalentBlogProject.Core.Entities
         public string ContentCaption { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string PhotoUrl { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
     }
 }
