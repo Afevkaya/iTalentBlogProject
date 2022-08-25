@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace iTalentBlogProject.Core.Repositories
 {
@@ -15,7 +10,7 @@ namespace iTalentBlogProject.Core.Repositories
         Task<TEntity> GetByIdAsync(int id);
         Task AddAsync(TEntity entity);
         void Update(TEntity entity);
-        void Remove(int id);
+        void Remove(TEntity entity);
 
     }
 }

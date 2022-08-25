@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using iTalentBlogProject.Core.Entities;
+﻿using iTalentBlogProject.Core.Entities;
 
 namespace iTalentBlogProject.Core.Repositories
 {
-    internal interface IPostRepository : IGenericRepository<Post>
+    public interface IPostRepository : IGenericRepository<Post>
     {
     }
 }
