@@ -1,9 +1,12 @@
 using System.Reflection;
 using iTalentBlogProject.Core.Repositories;
+using iTalentBlogProject.Core.Services;
 using iTalentBlogProject.Core.UnitOfWorks;
 using iTalentBlogProject.Repository.Context;
 using iTalentBlogProject.Repository.Repositories;
 using iTalentBlogProject.Repository.UnitOfWorks;
+using iTalentBlogProject.Services.Mapping;
+using iTalentBlogProject.Services.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddDbContext<iTalentBlogContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
@@ -27,6 +31,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+builder.Services.AddScoped<IPostService, PostService>();
 
 
 
