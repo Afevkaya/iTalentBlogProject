@@ -39,13 +39,13 @@ namespace iTalentBlogProject.Services.Services
 
         public async Task<TEntity> GetByIdAsync(int id)
         {
-            var hasProduct = _repository.GetByIdAsync(id);
-            if (hasProduct != null)
+            var hasProduct = await _repository.GetByIdAsync(id);
+            if (hasProduct == null)
             {
                 throw new Exception($"{typeof(TEntity).Name}({id}) not Found");
             }
 
-            return await _repository.GetByIdAsync(id);
+            return hasProduct;
         }
 
         public async Task AddAsync(TEntity entity)
