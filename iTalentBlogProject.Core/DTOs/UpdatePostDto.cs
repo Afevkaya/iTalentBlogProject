@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace iTalentBlogProject.Core.DTOs
 {
-    public class CreatePostDto
+    public class UpdatePostDto
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Article { get; set; }
         public string PhotoUrl { get; set; }
