@@ -1,4 +1,6 @@
 using System.Reflection;
+using FluentValidation.AspNetCore;
+using iTalentBlogProject.API.Filters;
 using iTalentBlogProject.Core.Repositories;
 using iTalentBlogProject.Core.Services;
 using iTalentBlogProject.Core.UnitOfWorks;
@@ -7,13 +9,21 @@ using iTalentBlogProject.Repository.Repositories;
 using iTalentBlogProject.Repository.UnitOfWorks;
 using iTalentBlogProject.Services.Mapping;
 using iTalentBlogProject.Services.Services;
+using iTalentBlogProject.Services.Validations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options=> options.Filters.Add(new ValidateFilterAttribute()))
+    .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<CreatePostDtoValidator>());
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddDbContext<iTalentBlogContext>(options =>
