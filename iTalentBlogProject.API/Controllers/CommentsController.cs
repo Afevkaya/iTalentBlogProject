@@ -26,7 +26,7 @@ namespace iTalentBlogProject.API.Controllers
             var comment = _mapper.Map<Comment>(createCommentDto);
             await _commentService.AddAsync(comment);
             var commentDto = _mapper.Map<CommentDto>(comment);
-            return new ObjectResult(CustomResponseDto<CommentDto>.Success(commentDto, 201)) {StatusCode = 201};
+            return new ObjectResult(CustomeResponseDto<CommentDto>.Success(commentDto, 201)) {StatusCode = 201};
         }
     }
 }

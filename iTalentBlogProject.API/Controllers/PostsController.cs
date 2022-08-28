@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace iTalentBlogProject.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PostsController : ControllerBase
+    public class PostsController : CustomeBaseController
     {
         private readonly IPostService _postService;
         private readonly IMapper _mapper;
@@ -25,7 +23,7 @@ namespace iTalentBlogProject.API.Controllers
         {
             var posts = await _postService.GetAllAsync();
             var listPostDto = _mapper.Map<List<PostDto>>(posts);
-            return Ok(CustomResponseDto<List<PostDto>>.Success(listPostDto, 200));
+            return CreateActionResult<List<PostDto>>(CustomeResponseDto<List<PostDto>>.Success(listPostDto, 200));
         }
 
         [HttpGet]
@@ -33,7 +31,8 @@ namespace iTalentBlogProject.API.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var post = await _postService.GetByIdAsync(id);
-            return new ObjectResult(CustomResponseDto<PostDto>.Success(_mapper.Map<PostDto>(post),200)) {StatusCode = 200};
+            var postDto = _mapper.Map<PostDto>(post);
+            return CreateActionResult<PostDto>(CustomeResponseDto<PostDto>.Success(postDto, 200));
         }
 
         [HttpPost]
@@ -41,8 +40,7 @@ namespace iTalentBlogProject.API.Controllers
         {
             var post = _mapper.Map<Post>(createPostDto);
             await _postService.AddAsync(post);
-            return new ObjectResult(CustomResponseDto<PostDto>.Success(_mapper.Map<PostDto>(post), 201))
-                {StatusCode = 201};
+            return CreateActionResult<PostDto>(CustomeResponseDto<PostDto>.Success(_mapper.Map<PostDto>(post), 201));
         }
 
         [HttpPut]
@@ -51,15 +49,15 @@ namespace iTalentBlogProject.API.Controllers
             var post = await _postService.GetByIdAsync(updatePosDto.Id);
             post = _mapper.Map<Post>(updatePosDto);
             await _postService.UpdateAsync(post);
-            return new ObjectResult(CustomResponseDto<NoContentDto>.Success(204)) {StatusCode = 204};
+            return CreateActionResult<NoContentDto>(CustomeResponseDto<NoContentDto>.Success(204));
         }
 
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            _postService.RemoveAsync(await _postService.GetByIdAsync(id));
-            return new ObjectResult(CustomResponseDto<NoContentDto>.Success(204)) {StatusCode = 204};
+            await _postService.RemoveAsync(await _postService.GetByIdAsync(id));
+            return CreateActionResult<NoContentDto>(CustomeResponseDto<NoContentDto>.Success(204));
         }
     }
 }
