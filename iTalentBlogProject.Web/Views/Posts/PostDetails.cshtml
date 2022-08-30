@@ -1,0 +1,26 @@
+﻿@model PostWithCommentsViewModel
+@{
+    ViewData["Title"] = "PostDetails";
+}
+
+TML
+<!-- Jumbotron -->
+<div class="jumbotron text-center">
+
+    <!-- Title -->
+    <h4 class="card-title h4 pb-2"><strong>@Model.Title</strong></h4>
+
+    <!-- Card image -->
+    <div class="view overlay my-4">
+        <img src="/images/@Model.PhotoUrl" class="img-fluid" />
+    </div>
+
+    <h5 class="indigo-text h5 mb-4">Kategori Adı @Model.Category.Name</h5>
+    <h5 class="indigo-text h5 mb-4">Yayınlanma Tarihi: @Model.CreatedDate.Day/@Model.CreatedDate.Month/@Model.CreatedDate.Year</h5>
+
+    <p class="card-text">@Model.Article</p>
+
+    
+
+</div>
+

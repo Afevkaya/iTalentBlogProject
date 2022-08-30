@@ -1,0 +1,31 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model iTalentBlogProject.Web.Models.CreatePostViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+<h1>Create</h1>
+<form asp-controller="Posts" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <select class="form-select" asp-items="@ViewBag.selectList" asp-for="CategoryId">
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="@Model.Title">Başlık Alanı Giriniz</label>
+        <input class="form-control" asp-for="Title"/>
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="@Model.Article">İçerik giriniz</label>
+        <textarea class="form-control" asp-for="Article"></textarea>
+        <span class="text-danger" asp-validation-for="Article"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="@Model.Photo">Fotoğraf seçiniz</label>
+        <input type="file" class="form-control" asp-for="Photo"/>
+        <span class="text-danger" asp-validation-for="Photo"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

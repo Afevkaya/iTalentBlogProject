@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTalentBlogProject.Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTalentBlogProject.API", "iTalentBlogProject.API\iTalentBlogProject.API.csproj", "{E944DB22-408A-4384-A18A-FFD35216A76B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTalentBlogProject.Web", "iTalentBlogProject.Web\iTalentBlogProject.Web.csproj", "{7A355A83-6870-47DA-B926-415CC5F4747A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTalentBlogProject.Web", "iTalentBlogProject.Web\iTalentBlogProject.Web.csproj", "{0DC2D932-6B0E-4F69-827B-AE43EF6A3778}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57785D3C-A82A-41D8-83EE-EE858EF4BD59}"
+	ProjectSection(SolutionItems) = preProject
+		Ports.txt = Ports.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +40,10 @@ Global
 		{E944DB22-408A-4384-A18A-FFD35216A76B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E944DB22-408A-4384-A18A-FFD35216A76B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E944DB22-408A-4384-A18A-FFD35216A76B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A355A83-6870-47DA-B926-415CC5F4747A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A355A83-6870-47DA-B926-415CC5F4747A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A355A83-6870-47DA-B926-415CC5F4747A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A355A83-6870-47DA-B926-415CC5F4747A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DC2D932-6B0E-4F69-827B-AE43EF6A3778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DC2D932-6B0E-4F69-827B-AE43EF6A3778}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DC2D932-6B0E-4F69-827B-AE43EF6A3778}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DC2D932-6B0E-4F69-827B-AE43EF6A3778}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

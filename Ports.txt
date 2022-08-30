@@ -1,0 +1,4 @@
+API Kestrel =>https://localhost:7071
+API Kestrel =>http://localhost:5071
+MVC Kestrel =>https://localhost:7086
+MVC Kestrel =>https://localhost:5086

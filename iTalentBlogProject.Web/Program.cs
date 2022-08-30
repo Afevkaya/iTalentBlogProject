@@ -1,9 +1,26 @@
+using iTalentBlogProject.Web.Services;
+using Microsoft.Extensions.FileProviders;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpClient<PostApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["WebApi:BaseUrl"]);
+});
+builder.Services.AddHttpClient<CommentApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["WebApi:BaseUrl"]);
+});
+builder.Services.AddHttpClient<CategoryApiService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["WebApi:BaseUrl"]);
+});
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
 var app = builder.Build();
+
+/*builder.Services.AddHttpClient<CategoryApiService>(opt => { opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]); });*/
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -23,5 +40,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "areaDefault",
+    pattern: "{area:exists}/{controller=Posts}/{action=Index}/{id?}");
 
 app.Run();

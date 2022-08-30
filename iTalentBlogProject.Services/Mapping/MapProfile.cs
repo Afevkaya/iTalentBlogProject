@@ -19,6 +19,10 @@ namespace iTalentBlogProject.Services.Mapping
             CreateMap<UpdatePostDto, Post>().ReverseMap();
             CreateMap<CreateCommentDto, Comment>().ReverseMap();
             CreateMap<CommentDto, Comment>();
+            CreateMap<(List<Post>, int), GetPostWithPagedDto>()
+                .ForMember(p => p.Post, t => t.MapFrom(s => s.Item1))
+                .ForMember(p => p.totalCount, t => t.MapFrom(s => s.Item2));
+            CreateMap<PostWithCommentsDto, Post>().ReverseMap();
         }
     }
 }

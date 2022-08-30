@@ -1,0 +1,53 @@
+﻿@model GetPostWithPagedViewModel
+@{
+    ViewData["Title"] = "PostByCategoryId";
+}
+
+<h1>PostByCategoryId</h1>
+
+<main class="my-5">
+    <div class="container">
+        <!--Section: Content-->
+        <section class="text-center">
+            <h4 class="mb-5"><strong>Latest posts</strong></h4>
+            <div class="row">
+                @foreach (var item in Model.Post)
+                {
+                    <div class="col-lg-6 mb-4">
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                <img src="/images/@item.PhotoUrl" class="img-fluid" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Title</h5>
+                                <p class="card-text">@item.Article</p>
+                                <a class="btn btn-primary" asp-action="PostDetails" asp-controller="Posts" asp-route-id="@item.Id">Read</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </section>
+        <!--Section: Content-->
+        <!-- Pagination -->
+        <nav class="my-4" aria-label="...">
+            <ul class="pagination pagination-circle justify-content-center">
+                <li class="page-item @(ViewBag.page == 1 ? "disabled" : "")">
+                    <a asp-action="PostByCategoryId" asp-controller="Posts" asp-route-page = "@(ViewBag.page-1)" asp-route-categoryId="@(ViewBag.categoryId)" class="page-link" tabindex="-1">Previous</a>
+                </li>
+                @for (int item = 1; item <= @ViewBag.totalPage; item++)
+                {
+                    <li class="page-item"><a asp-action="PostByCategoryId" asp-controller="Posts" asp-route-page="@item" asp-route-categoryId="@(ViewBag.categoryId)" class="page-link">@(item.ToString())</a></li>
+                }
+
+                <li class="page-item @(ViewBag.Page == ViewBag.totalPage ? "disabled" : "")">
+                    <a asp-action="PostByCategoryId" asp-controller="Posts" asp-route-page="@(ViewBag.page+1)" asp-route-categoryId="@(ViewBag.categoryId)" class="page-link">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</main>

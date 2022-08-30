@@ -12,6 +12,8 @@ namespace iTalentBlogProject.Core.DTOs
         public string Title { get; set; }
         public string Article { get; set; }
         public string PhotoUrl { get; set; }
+        public DateTime CreatedDate { get; set; }
         public int CategoryId { get; set; }
+        public CategoryDto Category { get; set; }
     }
 }

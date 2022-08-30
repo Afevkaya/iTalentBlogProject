@@ -31,8 +31,8 @@ namespace iTalentBlogProject.API.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var post = await _postService.GetByIdAsync(id);
-            var postDto = _mapper.Map<PostDto>(post);
-            return CreateActionResult<PostDto>(CustomeResponseDto<PostDto>.Success(postDto, 200));
+            var postDto = _mapper.Map<UpdatePostDto>(post);
+            return CreateActionResult<UpdatePostDto>(CustomeResponseDto<UpdatePostDto>.Success(postDto, 200));
         }
 
         [HttpPost]
@@ -59,5 +59,34 @@ namespace iTalentBlogProject.API.Controllers
             await _postService.RemoveAsync(await _postService.GetByIdAsync(id));
             return CreateActionResult<NoContentDto>(CustomeResponseDto<NoContentDto>.Success(204));
         }
+
+        [HttpGet]
+        [Route("[action]/{categoryId}")]
+        public async Task<IActionResult> GetPostsByCategoryId(int categoryId)
+        {
+            return CreateActionResult<List<PostDto>>(await _postService.GetPostsByCategoryIdAsync(categoryId));
+        }
+
+        [HttpGet]
+        [Route("[action]/page/{page}")]
+        public IActionResult GetPostsWithPaged(int page = 1)
+        {
+            return CreateActionResult<GetPostWithPagedDto>(_postService.GetPostWithPaged(page, 4));
+        }
+
+        [HttpGet]
+        [Route("[action]/{categoryId}/page/{page}")]
+        public IActionResult GetPostsByCategoryId(int categoryId, int page)
+        {
+            return CreateActionResult<GetPostWithPagedDto>(_postService.GetPostsWithPagedByCategoryId(page, 4, categoryId));
+        }
+
+        [HttpGet]
+        [Route("[action]/{id}")]
+        public async Task<IActionResult> GetPostWithComments(int id)
+        {
+            return CreateActionResult<PostWithCommentsDto>(await _postService.GetPostWithCommentsById(id));
+        }
+
     }
 }

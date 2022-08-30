@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace iTalentBlogProject.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CommentsController : ControllerBase
+    public class CommentsController : CustomeBaseController
     {
         private readonly ICommentService _commentService;
         private readonly IMapper _mapper;
@@ -26,7 +24,7 @@ namespace iTalentBlogProject.API.Controllers
             var comment = _mapper.Map<Comment>(createCommentDto);
             await _commentService.AddAsync(comment);
             var commentDto = _mapper.Map<CommentDto>(comment);
-            return new ObjectResult(CustomeResponseDto<CommentDto>.Success(commentDto, 201)) {StatusCode = 201};
+            return CreateActionResult<CommentDto>(CustomeResponseDto<CommentDto>.Success(commentDto, 201));
         }
     }
 }
